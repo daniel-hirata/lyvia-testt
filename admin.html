@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYVIA — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+<div class="noise-overlay"></div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">LYV<em>I</em>A</div>
+  <nav class="sidebar-nav">
+    <button class="snav-btn active" onclick="showTab('artworks')">🎨 Ilustrações</button>
+    <button class="snav-btn" onclick="showTab('texts')">✍️ Textos</button>
+    <button class="snav-btn" onclick="showTab('site')">⚙️ Site</button>
+  </nav>
+  <a href="/admin/logout" class="sidebar-logout">Sair →</a>
+</aside>
+
+<main class="admin-main">
+  <header class="admin-topbar">
+    <h1 class="admin-page-title" id="tabTitle">Ilustrações</h1>
+    <span class="admin-status" id="statusMsg"></span>
+  </header>
+
+  <!-- ARTWORKS TAB -->
+  <div class="tab-panel" id="tab-artworks">
+    <div class="panel-actions">
+      <button class="btn-add" onclick="openArtModal()">+ Nova Ilustração</button>
+    </div>
+    <div class="items-list" id="artworksList"></div>
+  </div>
+
+  <!-- TEXTS TAB -->
+  <div class="tab-panel hidden" id="tab-texts">
+    <div class="panel-actions">
+      <button class="btn-add" onclick="openTextModal()">+ Novo Texto</button>
+    </div>
+    <div class="items-list" id="textsList"></div>
+  </div>
+
+  <!-- SITE SETTINGS TAB -->
+  <div class="tab-panel hidden" id="tab-site">
+    <div class="settings-form">
+      <h3 class="settings-section">Textos do Site</h3>
+      <div class="form-row">
+        <label>Título Hero</label>
+        <input type="text" id="s_hero_title">
+      </div>
+      <div class="form-row">
+        <label>Subtítulo Hero</label>
+        <input type="text" id="s_hero_subtitle">
+      </div>
+      <div class="form-row">
+        <label>Texto Sobre</label>
+        <textarea id="s_about_text" rows="4"></textarea>
+      </div>
+      <h3 class="settings-section" style="margin-top:2rem">Redes Sociais & Contato</h3>
+      <div class="form-row">
+        <label>Instagram URL</label>
+        <input type="text" id="s_instagram">
+      </div>
+      <div class="form-row">
+        <label>TikTok URL</label>
+        <input type="text" id="s_tiktok">
+      </div>
+      <div class="form-row">
+        <label>Pinterest URL</label>
+        <input type="text" id="s_pinterest">
+      </div>
+      <div class="form-row">
+        <label>Email de Contato</label>
+        <input type="email" id="s_email">
+      </div>
+      <button class="btn-save" onclick="saveSiteSettings()">Salvar Alterações</button>
+    </div>
+  </div>
+</main>
+
+<!-- ARTWORK MODAL -->
+<div class="modal-backdrop hidden" id="artModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="artModalTitle">Nova Ilustração</h3>
+      <button class="modal-close" onclick="closeModal('artModal')">✕</button>
+    </div>
+    <input type="hidden" id="artId">
+    <div class="form-row">
+      <label>Título</label>
+      <input type="text" id="artTitle" placeholder="Nome da obra">
+    </div>
+    <div class="form-row">
+      <label>Descrição</label>
+      <textarea id="artDesc" rows="3" placeholder="Fale sobre esta obra..."></textarea>
+    </div>
+    <div class="form-row">
+      <label>Imagem (arquivo)</label>
+      <input type="file" id="artFile" accept="image/*" onchange="previewArt(this)">
+    </div>
+    <div class="form-row">
+      <label>— ou URL da imagem</label>
+      <input type="text" id="artUrl" placeholder="https://...">
+    </div>
+    <img id="artPreview" class="art-preview hidden" src="" alt="Preview">
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('artModal')">Cancelar</button>
+      <button class="btn-save" onclick="saveArtwork()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEXT MODAL -->
+<div class="modal-backdrop hidden" id="textModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="textModalTitle">Novo Texto</h3>
+      <button class="modal-close" onclick="closeModal('textModal')">✕</button>
+    </div>
+    <input type="hidden" id="textId">
+    <div class="form-row">
+      <label>Título</label>
+      <input type="text" id="textTitle" placeholder="Título do texto">
+    </div>
+    <div class="form-row">
+      <label>Conteúdo</label>
+      <textarea id="textContent" rows="8" placeholder="Escreva aqui..."></textarea>
+    </div>
+    <div class="form-row">
+      <label>Tag</label>
+      <input type="text" id="textTag" placeholder="#poesia, #conto, #reflexão">
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('textModal')">Cancelar</button>
+      <button class="btn-save" onclick="saveText()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

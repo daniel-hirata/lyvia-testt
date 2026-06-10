@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYVIA — Artista Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- NOISE OVERLAY -->
+<div class="noise-overlay"></div>
+<div class="scanline"></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop src="/static/music/bg.mp3"></audio>
+<button id="music-toggle" class="music-btn" title="Música">
+  <span class="music-icon">♪</span>
+  <span class="music-label">MÚSICA</span>
+</button>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">LYV<em>I</em>A</a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#gallery">Galeria</a></li>
+    <li><a href="#contact">Contato</a></li>
+    <li><a href="/admin/login" class="nav-admin">Admin</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Artista Visual</p>
+      <h1 class="hero-name" id="heroTitle">LYVIA</h1>
+      <p class="hero-sub" id="heroSubtitle">Arte que rompe limites. Imagens que ficam.</p>
+      <div class="hero-actions">
+        <a href="#gallery" class="btn-crimson">Ver Galeria</a>
+        <a href="#contact" class="btn-ghost">Contato</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-3d-card">
+        <div class="hero-card-inner" id="heroCard">
+          <div class="hero-glow-ring"></div>
+          <div class="hero-photo-placeholder">
+            <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="95" rx="48" ry="52" fill="#4a0015" stroke="#8b001a" stroke-width="1.5"/>
+              <path d="M30 240 Q100 155 170 240" fill="#2a000a" stroke="#8b001a" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="hero-card-shine"></div>
+        </div>
+      </div>
+      <div class="hero-big-letter">L</div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Arte Visual <b>✦</b></span>
+    <span>Ilustração Digital <b>✦</b></span>
+    <span>Identidade Visual <b>✦</b></span>
+    <span>Criação Textual <b>✦</b></span>
+    <span>Arte Visual <b>✦</b></span>
+    <span>Ilustração Digital <b>✦</b></span>
+    <span>Identidade Visual <b>✦</b></span>
+    <span>Criação Textual <b>✦</b></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <p class="section-label">— Sobre mim</p>
+      <h2 class="about-heading">Criando <em>arte</em><br>que fala.</h2>
+      <p class="about-body" id="aboutText">Sou Lyvia, artista visual com paixão por contar histórias através de imagens.</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num" data-target="14">0</span>
+          <span class="stat-label">Projetos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="14">0</span>
+          <span class="stat-label">Anos de Vida</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-label">Anos fazendo arte</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="skill-bars">
+        <div class="skill-bar" data-pct="100"><span class="skill-name">Personalidade</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        <div class="skill-bar" data-pct="100"><span class="skill-name">Ilustração Digital</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        <div class="skill-bar" data-pct="100"><span class="skill-name">Criação Textual</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        <div class="skill-bar" data-pct="100"><span class="skill-name">Criatividade</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+        <div class="skill-bar" data-pct="100"><span class="skill-name">Pintura</span><div class="skill-track"><div class="skill-fill"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — CAT SECTION -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <p class="section-label">— Galeria</p>
+    <h2 class="gallery-title">Minhas<br><span>Obras</span></h2>
+    <p class="gallery-sub">Clique no gato para explorar as categorias.</p>
+  </div>
+
+  <div class="cat-stage">
+    <div class="cat-container" id="catContainer">
+      <img src="/static/images/cat.png" alt="Gato Lyvia" id="mainCat" class="cat-img">
+      <div class="cat-tongue" id="catTongue">😛</div>
+      <div class="cat-menu" id="catMenu">
+        <button class="cat-menu-btn btn-textos" id="btnTextos">
+          <span class="cat-btn-icon">✍️</span>Textos
+        </button>
+        <button class="cat-menu-btn btn-ilustras" id="btnIlustras">
+          <span class="cat-btn-icon">🎨</span>Ilustrações
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXTOS -->
+  <div class="content-section hidden" id="textosSection">
+    <div class="section-nav">
+      <button class="section-back" onclick="closeSection()">← voltar</button>
+      <h3 class="section-title-sm">Textos & Poesias</h3>
+    </div>
+    <div class="texts-grid" id="textsGrid">
+      <div class="empty-state">Nenhum texto adicionado ainda.</div>
+    </div>
+  </div>
+
+  <!-- ILUSTRAÇÕES -->
+  <div class="content-section hidden" id="ilustrasSection">
+    <div class="section-nav">
+      <button class="section-back" onclick="closeSection()">← voltar</button>
+      <h3 class="section-title-sm">Ilustrações & Arte</h3>
+    </div>
+    <div class="arts-grid" id="artsGrid">
+      <div class="empty-state">Nenhuma ilustração adicionada ainda.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Arte que provoca</span>
+    <span class="marquee-item filled">Arte que provoca</span>
+    <span class="marquee-item">Arte que transforma</span>
+    <span class="marquee-item filled">Arte que transforma</span>
+    <span class="marquee-item">Arte que fica</span>
+    <span class="marquee-item filled">Arte que fica</span>
+    <span class="marquee-item">Arte que provoca</span>
+    <span class="marquee-item filled">Arte que provoca</span>
+    <span class="marquee-item">Arte que transforma</span>
+    <span class="marquee-item filled">Arte que transforma</span>
+    <span class="marquee-item">Arte que fica</span>
+    <span class="marquee-item filled">Arte que fica</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <p class="contact-tag">— Vamos trabalhar juntos</p>
+    <h2 class="contact-heading">Diga<br><em>olá.</em></h2>
+    <a href="mailto:lyvia@arte.com" class="contact-email" id="contactEmail">lyvia@arte.com</a>
+    <ul class="social-links">
+      <li><a href="https://www.instagram.com/thxyx.lyy/" target="_blank" id="socialIG">Instagram ↗</a></li>
+      <li><a href="#" id="socialTT">Tik Tok ↗</a></li>
+      <li><a href="#" id="socialPT">Pinterest ↗</a></li>
+    </ul>
+  </div>
+  <div class="contact-deco">
+    <div class="contact-sphere"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 Lyvia — Todos os direitos reservados</span>
+  <span>Feito com <b>✦</b> arte</span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+  <div class="lightbox-box">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <p class="lightbox-title" id="lightboxTitle"></p>
+    <p class="lightbox-desc" id="lightboxDesc"></p>
+  </div>
+</div>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>

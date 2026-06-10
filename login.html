@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYVIA — Admin Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+  body { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+  .login-box {
+    width: 380px;
+    background: #0d0005;
+    border: 1px solid #4a0015;
+    padding: 3rem 2.5rem;
+    position: relative;
+    box-shadow: 0 0 80px rgba(139,0,26,0.25), inset 0 0 40px rgba(0,0,0,0.5);
+  }
+  .login-box::before {
+    content:'';
+    position:absolute;
+    inset:-1px;
+    background: linear-gradient(135deg, #8b001a, transparent 40%, transparent 60%, #8b001a);
+    z-index:-1;
+    border-radius:2px;
+  }
+  .login-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+    text-align:center;
+  }
+  .login-logo em { color: #c0001f; font-style:normal; }
+  .login-sub { text-align:center; font-family:'Space Mono',monospace; font-size:0.65rem; color:#555; letter-spacing:0.2em; margin-bottom:2.5rem; text-transform:uppercase; }
+  .login-field {
+    position:relative;
+    margin-bottom: 1.5rem;
+  }
+  .login-field label { display:block; font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:#555; margin-bottom:0.5rem; text-transform:uppercase; }
+  .login-field input {
+    width:100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #2a000a;
+    border-bottom-color: #8b001a;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.9rem;
+    outline:none;
+    transition: border-color 0.3s;
+  }
+  .login-field input:focus { border-color: #c0001f; background: rgba(139,0,26,0.05); }
+  .login-btn {
+    width:100%;
+    background: #8b001a;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    margin-top:0.5rem;
+  }
+  .login-btn:hover { background:#c0001f; box-shadow: 0 0 20px rgba(192,0,31,0.4); }
+  .login-error {
+    font-family:'Space Mono',monospace;
+    font-size:0.65rem;
+    color:#ff4444;
+    text-align:center;
+    margin-top:1rem;
+    min-height:1.2em;
+  }
+  .login-back {
+    display:block;
+    text-align:center;
+    margin-top:1.5rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.6rem;
+    color:#333;
+    text-decoration:none;
+    letter-spacing:0.1em;
+    transition: color 0.3s;
+  }
+  .login-back:hover { color:#8b001a; }
+</style>
+</head>
+<body>
+<div class="noise-overlay"></div>
+<div class="login-box">
+  <div class="login-logo">LYV<em>I</em>A</div>
+  <p class="login-sub">Painel Administrativo</p>
+  <div class="login-field">
+    <label>Senha de Acesso</label>
+    <input type="password" id="pwdInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+  </div>
+  <button class="login-btn" onclick="doLogin()">Entrar</button>
+  <p class="login-error" id="loginError"></p>
+  <a href="/" class="login-back">← Voltar ao site</a>
+</div>
+<script>
+async function doLogin() {
+  const pwd = document.getElementById('pwdInput').value;
+  const err = document.getElementById('loginError');
+  const res = await fetch('/admin/login', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({password: pwd})
+  });
+  if(res.ok) { window.location = '/admin'; }
+  else { err.textContent = 'Senha incorreta. Tente novamente.'; }
+}
+</script>
+</body>
+</html>
